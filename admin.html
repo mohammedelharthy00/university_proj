@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="admin.css">
+
+  <title>university admin panel — user management</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>university admin panel</h1>
+        <p class="lead">create and manage: students — tas — professors. quickly generate and copy join codes.</p>
+      </div>
+      <div>
+        <button id="exportBtn" class="small ghost">export csv</button>
+        <button id="importBtn" class="small">import csv</button>
+        <input id="fileInput" type="file" accept="text/csv" style="display:none">
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h3>add new user</h3>
+        <form id="userForm">
+
+          <div class="field">
+            <label>first name</label>
+            <input id="firstName" type="text" placeholder="example: mohammed" required>
+          </div>
+
+          <div class="field">
+            <label>middle name</label>
+            <input id="middleName" type="text" placeholder="example: elsayed">
+          </div>
+
+          <div class="field">
+            <label>last name</label>
+            <input id="lastName" type="text" placeholder="example: emam elharthy" required>
+          </div>
+
+          <div class="field">
+            <label>phone number</label>
+            <input id="phone" type="tel" placeholder="01012345678" required>
+          </div>
+
+          <div class="field">
+            <label>gender</label>
+            <select id="gender">
+              <option value="male">male</option>
+              <option value="female">female</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>email</label>
+            <input id="email" type="email" placeholder="2401243@student.eelu.edu.eg">
+          </div>
+
+          <div class="field">
+            <label>role</label>
+            <select id="role">
+              <option value="student">student</option>
+              <option value="ta">ta</option>
+              <option value="prof">prof</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>join code (optional — leave blank for automatic generation)</label>
+            <input id="joinCode" type="text" placeholder="leave blank to generate automatically">
+          </div>
+
+          <div class="actions">
+            <button type="submit">add / save</button>
+            <button type="button" class="ghost" id="clearForm">clear fields</button>
+          </div>
+        </form>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.1)">
+
+        <h4>settings</h4>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <button id="genMany" class="small ghost">generate 5 demo students</button>
+          <button id="clearAll" class="small ghost">delete all</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>user list</h3>
+          <div class="controls">
+            <select id="filterRole" class="search">
+              <option value="all">show all</option>
+              <option value="student">student</option>
+              <option value="ta">ta</option>
+              <option value="prof">prof</option>
+            </select>
+            <input id="search" class="search" placeholder="search by name, email, or code">
+            <button id="refresh" class="small ghost">refresh</button>
+          </div>
+        </div>
+
+        <table id="usersTable">
+          <thead>
+            <tr>
+              <th>name • gender • phone</th>
+              <th>email</th>
+              <th>role</th>
+              <th>join code</th>
+              <th>actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersTbody"></tbody>
+        </table>
+        <div id="emptyState" class="empty">no users have been added yet.</div>
+      </div>
+    </div>
+  </div>
+  <script src="admin.js"></script>
+</body>
+
+</html>
